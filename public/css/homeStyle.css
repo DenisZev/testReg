@@ -1,0 +1,198 @@
+.block {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background: #121114;
+}
+
+/* Стиль для блока с приветствием */
+.welcome {
+    padding: 80px 0;
+    text-align: center;
+    display: block;
+}
+
+.welcome h1 {
+    font-size: 45px;
+    font-weight: 800;
+    position: relative;
+    color: #ffffff;
+    margin-inline: 25rem;
+    text-align: center;
+
+}
+
+.welcome p {
+    font-size: 15px;
+    line-height: 2;
+    color: rgba(196, 187, 187, 0.88);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.welcome img {
+    max-width: 45%;
+    height: auto;
+    right: 0;
+    top: 35px;
+    position: absolute;
+
+
+}
+.welcome a {
+    position: relative;
+    background: #0062cc;
+    color: #fff;
+    box-shadow:  0px 0px 5px 5px rgba(14, 14, 255, 0.77);
+    border-radius: 35px;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 20px 45px;
+}
+.welcome a:hover {
+    background: #007bff;
+    padding: 25px 55px;
+    transition: all 0.1s ease-in-out;
+
+}
+/* Стиль для блока с фотографией */
+#foto {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+}
+#foto img {
+    width: 100%;
+}
+
+#box {
+
+}
+
+
+
+
+.gradient-border {
+    --border-width: 5px;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    font-family: Lato, sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: white;
+    background: #222;
+    border-radius: var(--border-width);
+}
+.gradient-border::after {
+     position: absolute;
+     content: "";
+     top: calc(-1 * var(--border-width));
+     left: calc(-1 * var(--border-width));
+     z-index: -1;
+     width: calc(100% + var(--border-width) * 2);
+     height: calc(100% + var(--border-width) * 2);
+     background: linear-gradient(
+             60deg,
+             hsl(224, 85%, 66%),
+             hsl(269, 85%, 66%),
+             hsl(314, 85%, 66%),
+             hsl(359, 85%, 66%),
+             hsl(44, 85%, 66%),
+             hsl(89, 85%, 66%),
+             hsl(134, 85%, 66%),
+             hsl(179, 85%, 66%)
+     );
+     background-size: 300% 300%;
+     background-position: 0 50%;
+     border-radius: calc(2 * var(--border-width));
+     animation: moveGradient 4s alternate infinite;
+ }
+
+
+@keyframes moveGradient {
+    50% {
+        background-position: 100% 50%;
+        box-shadow: 0 0 3px rgb(1, 255, 235);
+    }
+}
+
+
+
+/* Стиль для блока с описанием */
+.description {
+    background-image: url(../images/cover_1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #333;
+    text-align: center;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+}
+.description h1 {
+    color: #ffffff;
+    text-shadow:   1px 1px 2px red, 0 0 1.5em blue, 0 0 0.5em blue;
+
+}
+.hackathons_home {
+
+}
+.hackathons_home ul {
+    list-style: none;
+    display: inline-flex;
+    text-align: left;
+
+}
+.hackathons_home li {
+    margin: 0.5rem;
+    display: block;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: .3s;
+
+}
+.hackathons_home ul:hover > :not(:hover) {
+    opacity: .4;
+}
+.hackathons_home img {
+    width: 15rem;
+    height: 12rem;
+    position: relative;
+    padding: 10px;
+
+}
+.hackathons_home .date {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px 0 3%;
+}
+
+
+.hackathons_home span {
+
+    background-color: #ff0065;
+    color: white;
+    padding: 0.9em;
+    width: 45px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+
+}
+.hackathons_home .arrow {
+    width: 45px;
+    height: 45px;
+}

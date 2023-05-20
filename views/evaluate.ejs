@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Оценить ответ</title>
+    <%- include('components/header') %>
+</head>
+<body>
+    <h1>Оценить ответ пользователя <%= answer.user.firstName %> <%= answer.user.lastName %></h1>
+
+    <% if (errorMessage) { %>
+        <div class="error-message">
+            <%= errorMessage %>
+        </div>
+    <% } %>
+
+    <% if (successMessage) { %>
+        <div class="success-message">
+            <%= successMessage %>
+        </div>
+    <% } %>
+
+    <form method="POST" action="/answer/<%= answer._id %>/score" class="form">
+        <div class="form-control">
+            <label>Оценка:</label>
+            <input type="number" name="score" min="0" max="10" required>
+        </div>
+
+        <div class="form-control">
+            <label>Статус:</label>
+            <select name="status" required>
+                <option value="Отправлен">Отправлен</option>
+                <option value="Принят">Принят</option>
+                <option value="Отклонено">Отклонено</option>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <button type="submit">Оценить</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+#wrapper {
+    display: flex;
+    padding: 50px 10px 0 10px;
+    align-items: center;
+    height: 100vh;
+    background: #121114;
+    flex-direction: column;
+}
+h1 {
+    color: #ffffff;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+
+
+.table .highlight {
+    background-color: #ffe6e6;
+}
+.Оценено {
+    background: rgba(20, 232, 28, 0.71);
+}
+.Отклонен {
+    background: #ff001e;
+}

@@ -1,0 +1,250 @@
+<title><%= hackathon.title %></title>
+<%- include('components/header') %>
+
+<body>
+
+<div class="hackathon-main">
+<div class="left-bar">
+<img class="hackathon-image" src="/images/hackathons/<%= hackathon.mainImage.data %>" alt="Hackathon Image">
+    <% if (isParticipant) { %>
+        <form class="btn" action="/hackathons/<%= hackathon._id %>/cancel" method="POST">
+            <button type="submit">Отменить участие</button>
+        </form>
+    <% } else { %>
+    <% if (user) {%>
+        <form class="btn" action="/hackathons/<%= hackathon._id %>/join" method="POST">
+            <button type="submit">Присоедениться</button>
+        </form>
+        <% } else { %>
+            <a href="/register">Присоединяйтесь</a>
+        <% } %>
+    <% } %>
+
+</div>
+<div class="main-content">
+    <div class="tabs">
+        <button class="tab-link active" data-tab="description">Описание</button>
+        <button class="tab-link" data-tab="participants">Участники</button>
+        <button class="tab-link" data-tab="other">Команды</button>
+    </div>
+
+    <div class="tab-content active" id="description">
+        <!-- Содержимое вкладки "Описание" -->
+        <div class="main-content">
+            <% if (typeof user !== 'undefined' && user && user.role === 'Admin') { %>
+            <h1><%= hackathon.title %></h1>
+            <a href="/hackathons/<%= hackathon._id %>/delete" onclick="event.preventDefault(); if (confirm('Вы уверены, что хотите удалить хакатон?')) { document.getElementById('delete-form').submit(); }">
+                Удалить хакатон
+            </a>
+            <form id="delete-form" action="/hackathons/<%= hackathon._id %>/delete" method="POST" style="display: none;">
+                <!-- CSRF-токен и другие необходимые поля формы -->
+            </form>
+
+                <button class="open-modal-button" data-team-id="<%= hackathon._id %>">Редактировать</button>
+
+                <div id="<%= hackathon._id %>" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3>Редактировать  <%= hackathon.title %></h3>
+
+                        <form id="add" action="/hackathons/<%= hackathon._id %>/update" method="post" enctype="multipart/form-data">
+                            <div class="add_description">
+                                <label for="title">Заголовок:</label><br>
+                                <input type="text" id="title" name="title" required value="<%= hackathon.title %>"><br>
+
+                                <label for="description">Описание:</label><br>
+                                <textarea id="description" name="description"  required><%= hackathon.description %></textarea><br>
+                            </div>
+                            <div class="add_options">
+                                <label for="startDate">Начало:</label>
+                                <input type="datetime-local" id="startDate" name="startDate" required >
+
+                                <label for="endDate">Конец:</label>
+                                <input type="datetime-local" id="endDate" name="endDate" required>
+
+                                <label for="location">Место проведения:</label>
+                                <input type="text" id="location" name="location" required value="<%= hackathon.location %>">
+
+                                <label for="organizer">Организаторы:</label>
+                                <input type="text" id="organizer" name="organizer" required value="<%= hackathon.organizer %>">
+
+                                <label for="thumbnail">Доп. изображение:</label>
+                                <input type="file" id="thumbnail" name="thumbnail">
+
+                                <label for="mainImage">Главное изображение:</label>
+                                <input type="file" id="mainImage" name="mainImage">
+
+                                <label for="taskTitle">Название задания</label>
+                                <input type="text" id="taskTitle" name="taskTitle">
+
+                                <label for="tasks">Файл с заданием:</label>
+                                <input type="file" id="tasks" name="tasks">
+
+                                <button type="submit">Редактировать</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <% } else { %>
+                <% } %>
+            <p><strong class="date">Начало:</strong> <%= hackathon.startDate.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long'}) %></p>
+            <p><strong class="date">Конец:</strong> <%= hackathon.endDate.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long'}) %></p>
+            <p><strong>Место проведения:</strong> <%= hackathon.location %></p>
+            <p><strong>Организатор:</strong> <%= hackathon.organizer %></p>
+            <p><%= hackathon.description %></p>
+            <%if (isParticipant) {%>
+                <% if (hackathon.tasks.length > 0) {%>
+                    <% hackathon.tasks.forEach((task, index) => {%>
+                        <a href="/images/hackathons/<%= task.data%>">
+                            <button class="hackathon-task-button task-button-<%= index + 1 %>">Задание <%= index + 1 %></button>
+                        </a>
+                    <% }) %>
+                <% } else { %>
+                    <p>Заданий нет</p>
+                <% } %>
+            <% } else { %>
+                <strong>Чтобы увидеть задания, нажмите "Присоедениться"!</strong>
+            <% } %>
+
+
+
+
+        </div>
+    </div>
+
+    <div class="tab-content" id="participants">
+        <!-- Содержимое вкладки "Участники" -->
+        Участники:  <%= hackathon.participants.length%>
+
+<div class="participants">
+            <% if (hackathon.participants.length > 0) { %>
+                <% hackathon.participants.forEach(participant => { %>
+                    <div class="participant">
+                        <% if (participant.profilePicture) {%>
+                            <img src="../images/<%= participant.profilePicture%>" alt="Фото участника" id="participant-photo">
+                            <% } else { %>
+                                <img src="../male-user-profile-picture.png" alt="Фото участника" id="participant-photo">
+                            <% } %>
+                            <div class="participant_info">
+                                <p><%= participant.firstName %></p>
+                                <p><%= participant.email %><br>
+                                    <% teams.forEach(function(team) { %>
+                                        <% const memberIds = team.members.map(member => member._id.toString()); %>
+                                        <%  if (memberIds.includes(participant._id.toString())) { %>
+                                        <div class="team">
+                                            <img id="icon" src="../free-icon-font-users-alt-5529124.png">
+                                            <%= team.name%>
+                                </div>
+                                        <%} else {%>
+                                            Нет команды
+                                        <%}%>
+                                    <% }); %>
+                                </p>
+
+                            </div>
+                        <div class="spec">
+                            <img id="icon" src="../img.png">
+                            <%= participant.specialization%>
+
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Нет участников :(</p>
+            <% } %>
+</div>
+    </div>
+
+    <div class="tab-content" id="other">
+        <!-- Содержимое вкладки "Команды" -->
+        <div>
+            <% teams.forEach(function(team) { %>
+                <div id="<%= team._id %>" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3><%= team.name %></h3>
+                        <% const memberIds = team.members.map(member => member._id.toString()); %>
+                        <% if (user && team.userFirst._id.toString() !== user._id.toString()) {%>
+                        <% if (user) {%>
+                        <%  if (user && user._id && !memberIds.includes(user._id.toString())) { %>
+                            <form method="POST" action="/team/<%= team._id %>/join">
+                                <button type="submit">Присоединиться</button>
+                            </form>
+                        <%} else {%>
+                            <form method="POST" action="/team/<%= team._id %>/leave">
+                                <button type="submit">Отменить участие</button>
+                            </form>
+                            <%}%>
+                            <%}%>
+                        <%}%>
+                        <p><%= team.description %></p>
+                        <p>Капитан: <%= team.userFirst.firstName %></p>
+                        <span>Участники: </span><br>
+                        <% team.members.forEach(member => { %>
+                            <%= member.firstName %> <%= member.lastName %><br>
+                        <% }) %>
+
+
+                    </div>
+                </div>
+
+                <button class="open-modal-button" data-team-id="<%= team._id %>"><%= team.name %></button>
+
+
+            <% }); %>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+
+<%- include('components/footer') %>
+</body>
+<script>
+    // JavaScript-код для отображения модального окна
+    const openModalButtons = document.querySelectorAll('.open-modal-button');
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+
+            const teamId = button.dataset.teamId;
+
+            const modal = document.getElementById(`${teamId}`);
+            modal.style.display = "block";
+        });
+    });
+
+    // закрытие модального окна при нажатии на крестик
+    const closeButtons = document.querySelectorAll('.close');
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.parentElement.parentElement;
+            modal.style.display = "none";
+        });
+    });
+
+
+
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            // Удаляем активный класс у всех вкладок и контента
+            tabLinks.forEach((link) => link.classList.remove('active'));
+            tabContents.forEach((content) => content.classList.remove('active'));
+
+            // Добавляем активный класс только выбранной вкладке и соответствующему контенту
+            const tabId = link.getAttribute('data-tab');
+            const tabContent = document.getElementById(tabId);
+            link.classList.add('active');
+            tabContent.classList.add('active');
+        });
+    });
+
+</script>

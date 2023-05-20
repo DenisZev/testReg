@@ -1,0 +1,34 @@
+
+<%- include('components/header') %>
+<body>
+
+<div class="hackathons-container">
+    <% for(let i = 0; i < hackathons.length; i++) { %>
+
+      <a href="/hackathons/<%= hackathons[i]._id %>">
+        <div class="hackathon-card">
+
+                <img src="/images/hackathons/<%= hackathons[i].mainImage.data%>" alt="Hackathon Image">
+            <div class="hackathon-date">
+                    <img id="date" src="/images/pngwing.com.png">
+                <span class="card-date-text"><%= hackathons[i].startDate.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long'}) %></span>
+            </div>
+
+            <div class="hackathon-date">
+                <img id="date" src="/images/pngwing.com.png">
+                <span class="card-date-text"><%= hackathons[i].endDate.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long'}) %></span>
+            </div>
+            <h2><%= hackathons[i].title %></h2>
+
+
+                <p><strong>Место проведения:</strong> <%= hackathons[i].location %></p>
+                <p><strong>Организатор:</strong> <%= hackathons[i].organizer %></p>
+
+            </div>
+      </a>
+
+    <% } %>
+</div>
+<%- include('components/footer') %>
+</body>
+

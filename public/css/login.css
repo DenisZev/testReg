@@ -1,0 +1,68 @@
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #121114;
+}
+
+.error {
+    color: red;
+}
+
+#signin {
+    background-color: #f4f4f4;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.72);
+}
+#wrapper form {
+    width: 35%;
+}
+#signin h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+input[type="email"],
+input[type="password"], input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 5px 10px 5px;
+}
+
+
+#signin input::placeholder {
+    color: #6c6c6c;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: normal;
+}
+#signin button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+}
+
+#signin button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#signin p {
+    text-align: center;
+}
+
+#signin p a {
+    color: #4CAF50;
+}
+

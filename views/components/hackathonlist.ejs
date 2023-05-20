@@ -1,0 +1,24 @@
+
+
+<div class="hackathons_home">
+    <% if (hackathons && hackathons.length > 0) { %>
+        <ul>
+            <% hackathons.forEach(hackathon => { %>
+            <a href="/hackathons/<%= hackathon._id %>">
+
+                <li>
+                    <div class="date">
+                        <span><%= hackathon.startDate.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long'}) %></span>
+                        <img class="arrow" src="../images/arrow.png">
+                        <span><%= hackathon.endDate.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long'}) %></span>
+                    </div>
+                    <img src="/images/hackathons/<%= hackathon.mainImage.data%>" alt="Hackathon Image">
+                </li>
+            <% }) %>
+            </a>
+
+        </ul>
+    <% } else { %>
+        <p>No hackathons found</p>
+    <% } %>
+</div>

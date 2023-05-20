@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Answers</title>
+</head>
+<body>
+<%- include('components/header') %>
+<div class="my-answers">
+    <h1>Портфолио</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Хакатон</th>
+            <th>Задание</th>
+            <th>Статус</th>
+            <th>Комментарий</th>
+            <th>Оценка</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <% answers.forEach(function(answer) { %>
+            <tr>
+                <td><%= answer.hackathonId.title %></td>
+                <td><%= answer.task %></td>
+                <td><%= answer.status %></td>
+                <td><%= answer.comment %></td>
+                <td><%= answer.score %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

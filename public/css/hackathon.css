@@ -1,0 +1,214 @@
+
+.hackathon-main {
+    display: flex;
+    margin-top: 85px;
+    min-height: 100vh;
+    max-width: 100%;
+}
+/* Центрируем изображение и добавляем ему тень, рамку и скругленные углы */
+.hackathon-main img {
+    display: block;
+    margin: 0 2rem 2rem 2rem;
+    height: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Добавляем рамки и фон для дат */
+.hackathon-main .date {
+    display: inline-block;
+    background-color: #fff;
+    border: 3px solid #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+/* Выделяем список участников */
+.hackathon-main ul {
+    list-style: none;
+    margin: 25px;
+    padding: 0;
+    background: #fff;
+}
+
+.hackathon-main ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+
+    border-bottom: #888888 1px solid;
+}
+
+/* Основной текст в рамке */
+.hackathon-main .main-content {
+    flex-grow: 1;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+
+
+}
+.main-content h1{
+    color: #333333;
+}
+/* Основной текст по центру и ширине на 50% */
+.hackathon-main .main-content--half {
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* Стили для кнопки */
+.left-bar button[type="submit"] {
+    display: inline-block;
+
+    background: #0062cc;
+    color: #fff;
+    box-shadow:  0px 0px 5px 5px rgba(14, 14, 255, 0.77);
+    border-radius: 35px;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 45px 0 0 15px;
+    padding: 20px 45px;
+}
+
+.left-bar button[type="submit"]:hover {
+    background: #007fff;
+    color: rgba(2, 7, 9, 0.88);
+    text-shadow: 0 0 10px rgb(12, 197, 255);
+    cursor: pointer;
+}
+.left-bar a {
+    position: relative;
+    /* display: none; */
+    background: #0062cc;
+    color: #fff;
+    box-shadow:  0px 0px 5px 5px rgba(14, 14, 255, 0.77);
+    border-radius: 35px;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 45px 0 0 15px;
+    padding: 20px 45px;
+}
+.left-bar a:hover {
+    background: #007bff;
+    padding: 25px 55px;
+    transition: all 0.1s ease-in-out;
+}
+.left-bar {
+    margin-left: 10px;
+
+}
+
+.tabs {
+    display: flex;
+}
+
+.tab-link {
+    background-color: #eee;
+    padding: 20px 35px;
+    cursor: pointer;
+
+}
+
+.tab-link.active {
+    background-color: #ccc;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.participants {
+    display: flex;
+    margin-top: 25px;
+    flex-direction: column;
+
+}
+.participant {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    border: 1px solid #45a049;
+    width: 100%;
+    padding: 10px;
+}
+
+#participant-photo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 0;
+}
+
+.participant_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0 25px 0 0;
+    width: 210px;
+}
+
+.participant_info p {
+    margin: 0;
+    padding-left: 15px;
+
+}
+
+/* Дополнительные стили для оформления */
+.participant_info p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.participant_info p:last-child {
+    color: #777;
+    font-size: 14px;
+}
+
+#other .open-modal-button {
+    border: none;
+    padding: 15px;
+    background: #45a049;
+    width: 100%;
+}
+#other .open-modal-button:hover {
+    padding: 25px;
+    background: #007bff;
+    transition: background-color, padding 0.3s ease-in-out;
+}
+#other form {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+#icon {
+    !important;
+    width: 15px;
+    height: 15px;
+    box-shadow: none;
+    margin: 0 5px 0 0;
+}
+.team {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+.spec {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 2px;
+}
+
+.spec #icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+.modal-content {
+    max-width: 900px;
+}

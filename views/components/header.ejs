@@ -1,0 +1,32 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Хакатоны</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/hackathon.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><img src="../sgga.png" id="logo-menu"></li>
+            <li id="site-name"><a href="/home">DigitalSphere</a></li>
+            <li><a href="/home">Главная</a></li>
+            <li><a href="/about">О нас</a></li>
+            <li><a href="/contact">Контакты</a></li>
+            <li><a href="/hackathons">Хакатоны</a></li>
+            <% if (typeof user !== 'undefined' && user) { %>
+                <li><a href="/profile">Профиль</a></li>
+                <li><a class="btn logout-btn" href="/logout">(<%= user.firstName %>)Выйти</a></li>
+            <% } else { %>
+                <li><a href="/login">Войти</a></li>
+                <li><a href="/register">Регистрация</a></li>
+            <% } %>
+            <% if (typeof user !== 'undefined' && user && user.role === 'Admin') { %>
+            <li><a href="/answers">Страница оценок</a></li>
+            <li><a href="/hackathons/add">Добавление хакатона</a></li>
+            <% } else { %>
+            <% } %>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/homeStyle.css">
+    <link rel="stylesheet" href="../css/carousel.css">
+
+</head>
+<%- include('components/header') %>
+
+<body>
+
+
+
+
+<div class="block welcome">
+    <h1>Раскройте свой потенциал, измените будущее</h1>
+
+    <p>Создавайте продукты, практикуйте навыки, изучайте технологии, выигрывайте призы и расширяйте свою сеть.</p>
+    <% if (typeof user !== 'undefined' && user) { %>
+        <a href="/hackathons">Выберите хакатон</a>
+    <% } else { %>
+        <a href="/register">Присоединяйтесь</a>
+    <% } %>
+
+</div>
+<div id="foto">
+    <div id="box" class="gradient-border" >
+        <img src="../img_1.png" alt="1">
+    </div>
+    <div id="box" class="gradient-border" >
+        <img src="../img_2.png" alt="1">
+    </div>
+
+
+</div>
+<div class="block description">
+<h1>Выбери свой хакатон</h1>
+    <%- include('components/hackathonlist') %>
+
+</div>
+
+
+</body>
+<%- include('components/footer') %>
+</html>

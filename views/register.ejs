@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Регистрация</title>
+    <link rel="stylesheet" href="../css/login.css">
+
+</head>
+<body>
+<%- include('components/header') %>
+<div id="wrapper">
+    <form action="/register" method="POST" id="signin" enctype="multipart/form-data">
+        <h1>Регистрация</h1>
+        <% if (errorMessage) { %>
+            <p class="error"><%= errorMessage %></p>
+        <% } %>
+        <input type="text" id="firstName" name="firstName" required placeholder="Имя">
+        <input type="text" id="lastName" name="lastName" required placeholder="Фамилия">
+        <input type="email" id="email" name="email" required placeholder="Email">
+        <input type="password" id="password" name="password" required placeholder="Пароль">
+
+        <label for="specialization">Специальность:</label>
+        <select id="specialization" name="specialization">
+            <option value="full-stack">Full-stack разработчик</option>
+            <option value="front-end">Front-end разработчик</option>
+            <option value="back-end">Back-end разработчик</option>
+            <option value="data-scientist">Data scientist</option>
+            <option value="designer">Дизайнер</option>
+            <option value="product-manager">Продукт менеджер</option>
+            <option value="other">Другое</option>
+        </select>
+
+        <label for="profilePicture">Фото:</label>
+        <input type="file" id="profilePicture" name="profilePicture">
+
+        <button type="submit" class="btn_reg">Зарегистрироваться</button>
+        <p><a href="/login">Войти</a></p>
+
+    </form>
+</div>
+
+</body>
+</html>

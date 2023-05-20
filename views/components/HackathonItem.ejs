@@ -1,0 +1,22 @@
+<template>
+    <div>
+        <h3>{{ hackathon.title }}</h3>
+        <p>{{ hackathon.description }}</p>
+        <p>Start date: {{ hackathon.startDate }}</p>
+        <p>End date: {{ hackathon.endDate }}</p>
+        <p>Location: {{ hackathon.location }}</p>
+        <p>Organizer: {{ hackathon.organizer }}</p>
+        <p>Participants: {{ hackathon.participants.length }}</p>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: {
+            hackathon: {
+                type: Object,
+                required: true,
+            },
+        },
+    };
+</script>

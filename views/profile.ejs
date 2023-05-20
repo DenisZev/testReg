@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="../css/answers.css">
+
+</head>
+<body>
+<%- include('components/header') %>
+<div class="container">
+    <h1>Профиль пользователя</h1>
+    <div class="profile">
+        <div class="profile-image">
+            <% if (!user.profilePicture) {%>
+                <img src="male-user-profile-picture.png" alt="<%= user.firstName %> <%= user.lastName %>">
+            <% } else { %>
+                <img src="images/<%= user.profilePicture %>" alt="<%= user.firstName %> <%= user.lastName %>">
+            <% } %>
+        </div>
+        <div class="profile-info">
+            <p><strong><%= user.firstName %> <%= user.lastName %></strong> </p>
+            <p><strong>Почта:</strong> <%= user.email %></p>
+            <p><strong>Специализация:</strong> <%= user.specialization%></p>
+            <% teams.forEach(function(team) { %>
+                <% const memberIds = team.members.map(member => member._id.toString()); %>
+                <%  if (memberIds.includes(user._id.toString())) { %>
+
+                    <p><strong>Команда:</strong><span id="team" style="display: none"><%= team.id%></span><%= team.name%></p>
+                <%} else {%>
+                    Нет команды
+                <%}%>
+            <% }); %>
+
+            <p><strong>Общий балл:</strong><%= totalScore %></p>
+            <p><strong>Участие в хакатонах:</strong></p>
+
+
+
+            <% if (user.hackathonIds.length > 0) { %>
+                <ul>
+                    <% user.hackathonIds.forEach(hackathonId => { %>
+                        <li><a href="hackathons/<%= hackathonId._id %>"> <%= hackathonId.title %></a></li>
+
+                    <% }) %>
+                </ul>
+
+            <% } else { %>
+                <p>Не участвует в хакатонах</p>
+            <% } %>
+
+        </div>
+        <% if (user.hackathonIds.length > 0) { %>
+        <div class="answer">
+        <h3>Форма для отправки своих решений</h3>
+        <form class="form-answer" method="POST" action="/profile/answer" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="hackathon">Выберите хакатон:</label>
+                <select name="hackathon" id="hackathon" class="form-control" data-hackathon-selector>
+                    <% user.hackathonIds.forEach(hackathonId => { %>
+                        <option value="<%= hackathonId._id %>"><%= hackathonId.title %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="task">Выберите задание:</label><br>
+                <select name="task" id="task" class="form-control">
+
+                </select>
+            </div>
+            <div class="form-group">
+
+                <label for="file">Загрузите файл:</label>
+                <input type="file" name="fileAnswer" id="fileAnswer" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+        </div>
+        <% } else { %>
+        <% } %>
+
+
+
+    </div>
+    <div class="my-answers">
+        <h1>Портфолио</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Хакатон</th>
+                <th>Задание</th>
+                <th>Статус</th>
+                <th>Комментарий</th>
+                <th>Оценка</th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <% if (answers) { %>
+            <% answers.forEach(function(answer) { %>
+                <% const task = answer.task; %>
+
+                <tr class="<%= answer.status %>">
+                    <td><%= answer.hackathonId.title %></td>
+                    <td><%= task %></td>
+                    <td><%= answer.status %></td>
+                    <td><%= answer.comment %></td>
+                    <td><%= answer.score %></td>
+                    <% if (answer.status !== 'Оценено' && answer.status !== 'На проверке'){%>
+                    <td><a href="/answers/<%= answer.id %>/delete"  onclick="event.preventDefault(); if (confirm('Вы уверены, что хотите удалить ответ?')) { document.getElementById('delete-form').submit(); }"><img src="../free-icon-font-cross-3917759.png"></a>
+                        <form id="delete-form" action="/answers/<%= answer.id %>/delete" method="POST" style="display: none;">
+                            <!-- CSRF-токен и другие необходимые поля формы -->
+                        </form>
+                    </td>
+                    <% } else { %>
+                    <td></td>
+                    <% }%>
+                </tr>
+
+            <% }); %>
+            <% } else { %>
+            <%}%>
+            </tbody>
+        </table>
+    </div>
+    <div class="team_created">
+    <h1>Создать команду</h1>
+        <form method="post" action="/teams/new">
+            <label for="name">Название команды:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="hackathon">Выберите хакатон:</label>
+            <select name="hackathonId" id="hackathonId" class="form-control">
+                <% user.hackathonIds.forEach(hackathonId => { %>
+                    <option value="<%= hackathonId._id %>"><%= hackathonId.title %></option>
+                <% }) %>
+            </select>
+            <label for="description">Описание команды:</label>
+            <textarea id="description" name="description" required></textarea>
+
+
+
+            <button type="submit">Создать команду</button>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    // Получаем ссылку на первый список хакатонов
+    const hackathonSelect = document.querySelector('[data-hackathon-selector]');
+    // Получаем ссылку на второй список заданий
+    const taskSelect = document.getElementById('task');
+
+    // Функция для обновления списка заданий
+    function updateTaskOptions() {
+        // Получаем выбранный хакатон
+        const selectedHackathon = hackathonSelect.value;
+
+        // Очищаем список заданий
+        taskSelect.innerHTML = '';
+
+        // Выполняем AJAX запрос для получения заданий выбранного хакатона
+
+        fetch(`/tasks?hackathon=${selectedHackathon}`)
+            .then(response => response.json())
+            .then(taskIds => {
+                // Создаем опции для каждого задания и добавляем их во второй список
+                taskIds.forEach((task, index) => {
+                    const option = document.createElement('option');
+                    option.value = task;
+                    option.textContent = `Задание ${index + 1}`;
+                    taskSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке заданий:', error);
+            });
+    }
+
+    // Обрабатываем изменения в первом списке хакатонов
+    hackathonSelect.addEventListener('change', updateTaskOptions);
+
+    // Вызываем функцию обновления заданий при инициализации страницы
+    updateTaskOptions();
+</script>
+
+</html>

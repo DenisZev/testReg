@@ -1,0 +1,72 @@
+<%- include('components/header') %>
+<link rel="stylesheet" href="../css/answers.css">
+<div id="wrapper">
+<h1>Список ответов на задания хакатона</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Имя пользователя</th>
+        <th>Задание</th>
+        <th>Дата создания</th>
+        <th>Статус</th>
+        <th>Оценка</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% answers.forEach(function(answer) { %>
+        <tr class="<%= answer.status %>">
+            <td><%= answer.user.firstName %> <%= answer.user.lastName %></td>
+            <td><%= answer.task %></td>
+            <td><%= answer.createdAt.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long', hour: 'numeric', minute: 'numeric'}) %></td>
+            <td><%= answer.status %></td>
+            <td><%= answer.score %></td>
+            <td>
+                <% if (answer.status === 'Отправлен') { %>
+                    <button class="open-modal-button" id="<%= answer._id %>" data-answer-id="<%= answer._id %>" >Оценить</button>
+
+                <% } %>
+                    <% if (answer.status === 'На проверке' && answer.checkedBy === user.id) { %>
+                        <button class="open-modal-button" id="<%= answer._id %>" data-answer-id="<%= answer._id %>">Продолжить оценку</button>
+
+                    <% } %>
+            </td>
+            <!-- Модальное окно -->
+            <div id="<%= answer._id %>" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3>Оценить ответ пользователя <%= answer.user.firstName %> <%= answer.user.lastName %></h3>
+                    <a href="/answer/<%= answer.file.data%>">Скачать файл</a>
+                    <form class="form-answer" method="POST" action="/answer/<%= answer._id %>/score">
+                        <div>
+                            <label for="score">Оценка:</label>
+                            <input type="number" id="score" name="score" min="0" max="10" required>
+                        </div>
+                        <div>
+                            <label for="comment">Комментарий:</label>
+                            <textarea name="comment" id="comment" rows="4" cols="50"></textarea>
+                        </div>
+                        <div>
+                            <label for="status">Статус:</label>
+                            <select name="status" id="status" required>
+                                <option value="Отправлен">Отправлен</option>
+                                <option value="Оценено">Оценено</option>
+                                <option value="Отклонен">Отклонено</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit">Оценить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </tr>
+    <% }); %>
+    </tbody>
+</table>
+</div>
+<%- include('components/footer') %>
+
+<script src="script.js"></script>

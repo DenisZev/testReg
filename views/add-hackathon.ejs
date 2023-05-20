@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Hackathon</title>
+</head>
+<body>
+<%- include('components/header') %>
+<div class="form_add">
+    <h1>Создать новый хакатон</h1>
+    <form id="add" action="/hackathons" method="POST" enctype="multipart/form-data">
+        <div class="add_description">
+            <label for="title">Заголовок:</label><br>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="description">Описание:</label><br>
+            <textarea id="description" name="description"  required></textarea><br>
+        </div>
+        <div class="add_options">
+            <label for="startDate">Начало:</label>
+            <input type="datetime-local" id="startDate" name="startDate" required>
+
+            <label for="endDate">Конец:</label>
+            <input type="datetime-local" id="endDate" name="endDate" required>
+
+            <label for="location">Место проведения:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="organizer">Организаторы:</label>
+            <input type="text" id="organizer" name="organizer" required>
+
+            <label for="thumbnail">Доп. изображение:</label>
+            <input type="file" id="thumbnail" name="thumbnail">
+
+            <label for="mainImage">Главное изображение:</label>
+            <input type="file" id="mainImage" name="mainImage">
+
+
+
+            <label for="tasks">Файл с заданием:</label>
+            <input type="file" id="tasks" name="tasks" multiple>
+
+
+            <button type="submit">Создать хакатон</button>
+        </div>
+    </form>
+</div>
+</body>
+<%- include('components/footer') %>
+
+</html>
