@@ -9,8 +9,7 @@ const answerController = require('../controller/answerController');
 const Answer = require("../models/answer");
 const multer = require('multer');
 const path = require("path");
-const {profile_get} = require("./profile");
-const teamController = require("../controller/teamController");
+
 const Team = require("../models/team");
 
 
@@ -110,20 +109,22 @@ router.get('/home', authMiddleware.requireAuth, async (req, res) => {
 
 });
 
-router.get('/', authMiddleware.requireAuth ,(req, res) => {
-    if (req.user) {
-        res.render('/home', {user: req.user});
+router.get('/', authMiddleware.requireAuth, async (req, res) => {
+    try {
+        const hackathons = await Hackathon.find({});
 
+        if (req.user) {
+            res.render('home', { user: req.user, hackathons });
+        } else {
+            res.redirect('/login');
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Internal Server Error');
     }
-    else {
-        res.redirect('/login');
-    }
-    res.render('home');
-
 });
-// router.get('/header', authMiddleware.requireAuth,(req, res) => {
-//     res.render('header', { user: req.user });
-// })
+
+
 
 router.get('/profile1', authMiddleware.requireAuth, async (req, res) => {
     User.findById(req.user._id).populate('hackathonIds').exec((err, user) => {

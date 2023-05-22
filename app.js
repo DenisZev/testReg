@@ -10,15 +10,11 @@ const config = require('./config/db');
 const session = require('express-session');
 const path = require('path');
 const mime = require('mime');
-const profileController = require('./controller/profile');
 const Hackathon = require('./models/Hackathon');
 const hackathonController = require('./controller/hackathonController');
-const check = require('./controller/checkController');
-const hackathonRoutes = require('./routes/hackathonRoutes');
 const Answer = require('./models/answer');
 const methodOverride = require('method-override');
-const Team = require("./models/team");
-const Task = require("./models/task");
+
 app.use('/public/css', express.static(path.join(__dirname, 'public', 'css'), { 'Content-Type': 'text/css' }));
 
 // app.use('/public/images/hackathons', express.static(path.join(__dirname, 'public', 'images', 'hackathons'), { 'Content-Type': 'text/css' }));
@@ -29,7 +25,7 @@ app.use(methodOverride('_method'));
 
 
 
-app.use('/', hackathonRoutes);
+
 app.use(express.static(path.join(__dirname, 'public'), {
     setHeaders: function(res, path) {
         res.setHeader('Content-Type', mime.getType(path));
