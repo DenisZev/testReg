@@ -101,7 +101,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(80, () => {
-    console.log('Server is listening on port 3000.');
+    console.log('Server is listening on port 80.');
 });
 //Маршруты для упправления хакатонами
 
