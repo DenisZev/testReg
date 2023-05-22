@@ -113,11 +113,9 @@ router.get('/', authMiddleware.requireAuth, async (req, res) => {
     try {
         const hackathons = await Hackathon.find({});
 
-        if (req.user) {
-            res.render('home', { user: req.user, hackathons });
-        } else {
-            res.redirect('/login');
-        }
+
+            res.render('home', {  hackathons });
+
     } catch (error) {
         console.log(error);
         res.status(500).send('Internal Server Error');
