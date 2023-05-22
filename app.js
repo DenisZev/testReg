@@ -100,7 +100,7 @@ app.use(function(err, req, res, next) {
     res.status(500).send('Internal Server Error');
 });
 
-app.listen(3000, () => {
+app.listen(80, () => {
     console.log('Server is listening on port 3000.');
 });
 //Маршруты для упправления хакатонами

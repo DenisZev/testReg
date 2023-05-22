@@ -39,6 +39,8 @@ header h1 {
 
 header nav ul {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -81,6 +83,66 @@ header nav a:hover {
     width: 50px;
     height: 50px;
 
+}
+.about {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 56rem;
+
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.left {
+    float: left;
+    width: 50%;
+    padding: 25px;
+    background: rgb(193, 210, 215);
+    border-radius: 45px 10px 15px;
+}
+
+.about p {
+    line-height: 1.5;
+    margin-bottom: 10px;
+
+}
+.about .right p {
+    background: #007bff ;
+    color: #fff;
+    border-radius: 25px 35px;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 45px;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #c1d2d7;
+    height: 75%;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    margin-bottom: 10px;
+}
+
+.contact-label {
+    font-weight: bold;
+}
+
+.contact-value {
+    margin-left: 10px;
 }
 
 /* стили для списка хакатонов */

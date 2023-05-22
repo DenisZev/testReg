@@ -69,7 +69,13 @@ router.get('/login', (req, res) => {
     res.render('login', {user: res.locals.currentUser, message: req.flash('error') });
 });
 
-
+// Роут для страницы "О нас"
+router.get('/about', (req, res) => {
+    res.render('about', {user: res.locals.currentUser})
+});
+router.get('/contact', (req, res) => {
+    res.render('contact', {user: res.locals.currentUser})
+});
 // authenticate user with email and password
 router.post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
