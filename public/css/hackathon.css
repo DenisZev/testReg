@@ -4,6 +4,7 @@
     margin-top: 85px;
     min-height: 100vh;
     max-width: 100%;
+    flex-wrap: wrap;
 }
 /* Центрируем изображение и добавляем ему тень, рамку и скругленные углы */
 .hackathon-main img {

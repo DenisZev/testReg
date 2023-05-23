@@ -39,7 +39,6 @@ header h1 {
 
 header nav ul {
     display: flex;
-    flex-wrap: wrap;
     justify-content: flex-end;
     list-style: none;
     margin: 0;
@@ -68,8 +67,20 @@ header nav a:hover {
     transition: color 0.2s ease-in-out;
 
 }
-@media (width: 768px) {
-    nav ul {
+
+
+
+
+@media (max-width: 1000px) {
+    header   {
+        display: none;
+
+    }
+
+    nav li {
+        margin-bottom: 10px;
+    }
+    #menuToggle {
         display: block;
     }
 }

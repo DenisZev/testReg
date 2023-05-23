@@ -323,8 +323,9 @@ router.post('/teams/new', async (req, res) => {
 
     try {
         const team = new Team({ name, description, userFirst, hackathonId });
+        team.members.push(userFirst);
         await team.save();
-        res.redirect('/teams');
+        res.redirect('back');
     } catch (error) {
         console.log(error);
     }
