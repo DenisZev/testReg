@@ -8,45 +8,28 @@
     <link rel="stylesheet" href="../css/homeStyle.css">
     <link rel="stylesheet" href="../css/carousel.css">
 </head>
-
 <body>
+<%- include('components/header') %>
 <div class="container">
-    <%- include('components/header') %>
-
-
-
 <div class="block welcome">
     <h1>Раскройте свой потенциал, измените будущее</h1>
-
     <p>Создавайте продукты, практикуйте навыки, изучайте технологии, выигрывайте призы и расширяйте свою сеть.</p>
     <% if (typeof user !== 'undefined' && user) { %>
         <a href="/hackathons">Выберите хакатон</a>
     <% } else { %>
         <a href="/register">Присоединяйтесь</a>
     <% } %>
-
 </div>
 <div id="foto">
     <main>
         <img name="slider" width="800" height="auto">
     </main>
-
-    <script>
-
-
-
-    </script>
-
 </div>
 <div class="block description">
 <h1>Выбери свой хакатон</h1>
     <%- include('components/hackathonlist') %>
-
 </div>
-
 </div>
-
-
 </body>
 <%- include('components/footer') %>
 <script type="text/javascript" src="../script_carousel.js"></script>
