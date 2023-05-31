@@ -6,7 +6,9 @@
 
 </head>
 <body>
-<%- include('components/header') %>
+<div class="login_body">
+    <%- include('components/header') %>
+
 <div id="wrapper">
     <form action="/register" method="POST" id="signin" enctype="multipart/form-data">
         <h1>Регистрация</h1>
@@ -28,7 +30,8 @@
             <option value="product-manager">Продукт менеджер</option>
             <option value="other">Другое</option>
         </select>
-
+        <br>
+        <br>
         <label for="profilePicture">Фото:</label>
         <input type="file" id="profilePicture" name="profilePicture">
 
@@ -37,6 +40,6 @@
 
     </form>
 </div>
-
+</div>
 </body>
 </html>

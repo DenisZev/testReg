@@ -65,4 +65,33 @@ input[type="password"], input[type="text"] {
 #signin p a {
     color: #4CAF50;
 }
+@media (max-width: 1000px) {
+    #wrapper {
+        height: 100%;
+    }
+    #wrapper form {
+        width: 75%;
+    }
+    #wrapper form input {
+        font-size: 30px;
 
+    }
+    #wrapper form input::placeholder, button[type="submit"] {
+        font-size: 30px;
+
+    }
+
+    .login_body {
+        margin: 50px 50px;
+    }
+    body {
+        height: 100%;
+    }
+    #menuToggle {
+        top: 35px;
+        left: 35px;
+    }
+    #wrapper form select, label {
+        font-size: 25px;
+    }
+}

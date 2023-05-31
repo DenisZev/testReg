@@ -170,7 +170,7 @@ app.post('/answer/:id/score', function(req, res) {
         answer.score = score;
         answer.comment = comment;
         answer.status = status;
-        // answer.hackathonId = answer.hackathonId;
+
         // Сохраняем изменения
         answer.save(function(err) {
             if (err) {

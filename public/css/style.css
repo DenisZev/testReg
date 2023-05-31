@@ -71,19 +71,7 @@ header nav a:hover {
 
 
 
-@media (max-width: 1000px) {
-    header   {
-        display: none;
 
-    }
-
-    nav li {
-        margin-bottom: 10px;
-    }
-    #menuToggle {
-        display: block;
-    }
-}
 
 
 
@@ -300,6 +288,7 @@ button[type="submit"] {
     padding: 50px 20px;
 
 }
+
 
 h1 {
     font-size: 2rem;
@@ -552,12 +541,74 @@ footer .container {
 }
 
 @media (min-width: 768px) {
-    footer {
-        padding: 40px 0;
-    }
+
 }
 
 .my-answers img {
     width: 15px;
     height: 15px;
+}
+
+@media (max-width: 1000px) {
+    header   {
+        display: none;
+
+    }
+
+    nav li {
+        margin-bottom: 10px;
+    }
+    #menuToggle {
+        display: block;
+    }
+    .welcome {
+        width: 100%;
+
+    }
+    .welcome h1 {
+        margin-inline: 0;
+    }
+    .hackathons_home ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .block {
+        height: auto;
+    }
+    .hackathon-main {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        font-size: 2.5rem;
+    }
+    .hackathon-card img {
+        height: 300px;
+    }
+    .hackathon-card {
+        width: 350px;
+        height: 40rem;
+        font-size: 1.5rem;
+    }
+    .left-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    .tabs button{
+        font-size: 1.5rem;
+        width: 100%;
+    }
+    #other .open-modal-button {
+        font-size: 3rem;
+    }
+    footer {
+        width: 100%;
+        margin: 99% 0 0 0;
+        bottom: 0;
+    }
+    .container {
+        width: 100%;
+    }
 }

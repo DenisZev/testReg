@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Главная</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/homeStyle.css">
     <link rel="stylesheet" href="../css/carousel.css">
-
 </head>
-<%- include('components/header') %>
 
 <body>
-
+<div class="container">
+    <%- include('components/header') %>
 
 
 
@@ -28,7 +28,7 @@
 </div>
 <div id="foto">
     <main>
-        <img name="slider" width="800" height="400">
+        <img name="slider" width="800" height="auto">
     </main>
 
     <script>
@@ -44,10 +44,10 @@
 
 </div>
 
+</div>
+
 
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script type="text/javascript" src="../script_carousel.js"></script>
 <%- include('components/footer') %>
+<script type="text/javascript" src="../script_carousel.js"></script>
 </html>
