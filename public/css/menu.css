@@ -2,10 +2,10 @@
 #menuToggle
 {
     display: none;
-    position: relative;
-    top: 15px;
-    left: 10px;
-
+    position: fixed;
+    top: 50px;
+    left: 57px;
+    width: 50px;
     z-index: 1;
 
     -webkit-user-select: none;
