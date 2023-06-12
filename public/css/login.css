@@ -65,7 +65,7 @@ input[type="password"], input[type="text"] {
 #signin p a {
     color: #4CAF50;
 }
-@media (max-width: 1000px) {
+@media (max-width: 850px) {
     #wrapper {
         height: 100%;
     }

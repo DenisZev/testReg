@@ -121,7 +121,7 @@
 {
     transform: none;
 }
-@media (max-width: 1000px) {
+@media (max-width: 850px) {
     .logout-btn {
         float: left;
     }
